@@ -6,6 +6,7 @@ html,
 body {
   margin: 0;
   min-height: 100%;
+  min-height: 100dvh;
   background: #050912;
   color: #fff;
   font-family: Inter, Arial, sans-serif;
@@ -14,12 +15,14 @@ body {
 body {
   display: grid;
   place-items: center;
+  overflow-x: hidden;
 }
 
 .card {
   position: relative;
-  width: min(100%, 520px);
+  width: min(100%, 1440px);
   min-height: 100svh;
+  min-height: 100dvh;
   overflow: hidden;
   background: radial-gradient(
     circle at 50% 25%,
@@ -52,8 +55,8 @@ body {
 
 .hero {
   position: relative;
-  height: 72svh;
-  min-height: 560px;
+  height: clamp(540px, 75svh, 820px);
+  min-height: 540px;
 }
 
 .hero::after {
@@ -220,7 +223,7 @@ body {
   position: relative;
   z-index: 5;
   text-align: center;
-  padding: 0 20px 36px;
+  padding: 0 24px 36px;
 }
 
 .small {
@@ -271,6 +274,13 @@ body {
   font-weight: 900;
   font-size: 20px;
   background: rgba(0, 0, 0, 0.28);
+  transition: background 180ms ease, transform 180ms ease;
+}
+
+.phone:hover,
+.phone:focus-visible {
+  background: rgba(255, 178, 45, 0.14);
+  transform: translateY(-2px);
 }
 
 /* =========================
@@ -294,13 +304,17 @@ body {
   }
 
   .hero {
-    height: 68svh;
+    height: clamp(500px, 68svh, 680px);
     min-height: 500px;
-    max-height: 680px;
   }
+
 
   #viewer {
     inset: 0;
+    width: 100%;
+    max-width: 100%;
+    left: 0;
+    right: 0;
   }
 
   .chip {
@@ -360,4 +374,62 @@ body {
     font-size: 17px;
   }
 
+}
+
+@media (min-width: 601px) {
+  .card {
+    min-height: min(100dvh, 980px);
+  }
+
+  .hero {
+    height: clamp(560px, 76dvh, 820px);
+  }
+
+  .chip {
+    padding: 9px 12px;
+    font-size: clamp(10px, 0.8vw, 13px);
+  }
+
+  .intro {
+    padding-bottom: 42px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .hero {
+    height: clamp(600px, 78dvh, 860px);
+  }
+
+  .chip {
+    font-size: 13px;
+  }
+
+  .intro h1 {
+    font-size: clamp(58px, 5vw, 82px);
+  }
+}
+
+@media (max-width: 380px) {
+  .hero {
+    height: 500px;
+    min-height: 500px;
+  }
+
+
+  .chip {
+    padding: 5px 6px;
+    font-size: 8px;
+  }
+
+  .small {
+    font-size: 12px;
+  }
+
+  .intro h1 {
+    font-size: 38px;
+  }
+
+  .phone {
+    font-size: 15px;
+  }
 }
