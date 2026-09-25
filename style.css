@@ -287,27 +287,77 @@ body {
    MOBILE
    ========================= */
 
-@media (max-width: 390px) {
-  .chip {
-    padding: 6px 7px;
-    font-size: 9px;
+@media (max-width: 600px) {
+
+  .card {
+    width: 100%;
   }
 
   .hero {
-    min-height: 510px;
+    height: 68svh;
+    min-height: 500px;
+    max-height: 680px;
+  }
+
+  #viewer {
+    inset: 0;
+  }
+
+  .chip {
+    padding: 6px 8px;
+    border-radius: 9px;
+    font-size: clamp(8px, 2.3vw, 10px);
+  }
+
+  /*
+   * Give the 3D boy more breathing room.
+   */
+
+  .c1 { top: 6%; left: 2%; }
+  .c2 { top: 6%; right: 2%; }
+
+  .c3 { top: 17%; left: 2%; }
+  .c4 { top: 17%; right: 2%; }
+
+  .c5 { top: 29%; left: 1%; }
+  .c6 { top: 29%; right: 1%; }
+
+  .c7 { top: 41%; left: 2%; }
+  .c8 { top: 41%; right: 2%; }
+
+  .c9 { top: 53%; left: 1%; }
+  .c10 { top: 53%; right: 1%; }
+
+  .c11 { top: 64%; left: 2%; }
+  .c12 { top: 64%; right: 2%; }
+
+  .c13 { top: 75%; left: 1%; }
+  .c14 { top: 75%; right: 1%; }
+
+  .c15 { top: 85%; left: 3%; }
+  .c16 { top: 85%; right: 3%; }
+
+  .hint {
+    bottom: 0.5%;
+    font-size: 8px;
+  }
+
+  .intro {
+    padding: 8px 16px 28px;
   }
 
   .small {
     font-size: 14px;
   }
 
-  .c5,
-  .c13 {
-    left: 1px;
+  .intro h1 {
+    font-size: clamp(40px, 13vw, 58px);
   }
 
-  .c10,
-  .c14 {
-    right: 1px;
+  .phone {
+    width: min(92%, 350px);
+    padding: 12px;
+    font-size: 17px;
   }
+
 }
