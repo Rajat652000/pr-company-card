@@ -1,0 +1,313 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: #050912;
+  color: #fff;
+  font-family: Inter, Arial, sans-serif;
+}
+
+body {
+  display: grid;
+  place-items: center;
+}
+
+.card {
+  position: relative;
+  width: min(100%, 520px);
+  min-height: 100svh;
+  overflow: hidden;
+  background: radial-gradient(
+    circle at 50% 25%,
+    #102b5b 0,
+    #07101f 38%,
+    #03060c 78%
+  );
+}
+
+.glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at 50% 35%,
+      rgba(0, 145, 255, 0.16),
+      transparent 36%
+    ),
+    radial-gradient(
+      circle at 50% 75%,
+      rgba(255, 177, 42, 0.12),
+      transparent 28%
+    );
+  pointer-events: none;
+}
+
+/* =========================
+   HERO / 3D MODEL
+   ========================= */
+
+.hero {
+  position: relative;
+  height: 72svh;
+  min-height: 560px;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 14%;
+  right: 14%;
+  bottom: 5%;
+  height: 28px;
+  border: 2px solid #168dff;
+  border-radius: 50%;
+  box-shadow:
+    0 0 28px #168dff,
+    0 0 55px rgba(255, 180, 50, 0.35);
+}
+
+#viewer {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  touch-action: none;
+}
+
+/* =========================
+   SERVICE CHIPS
+   ========================= */
+
+.chip {
+  position: absolute;
+  z-index: 3;
+  padding: 8px 10px;
+  border: 1px solid rgba(62, 168, 255, 0.8);
+  border-radius: 12px;
+  background: rgba(4, 13, 29, 0.68);
+  backdrop-filter: blur(7px);
+  box-shadow: 0 0 16px rgba(0, 132, 255, 0.2);
+  font-weight: 700;
+  font-size: 11px;
+  white-space: nowrap;
+  pointer-events: none;
+  animation: float 3.5s ease-in-out infinite;
+}
+
+/* LEFT SIDE */
+
+.c1 {
+  top: 7%;
+  left: 3%;
+}
+
+.c3 {
+  top: 19%;
+  left: 5%;
+  animation-delay: 0.8s;
+}
+
+.c5 {
+  top: 31%;
+  left: 1%;
+  animation-delay: 0.3s;
+}
+
+.c7 {
+  top: 44%;
+  left: 6%;
+  animation-delay: 1.1s;
+}
+
+.c9 {
+  top: 56%;
+  left: 2%;
+  animation-delay: 0.5s;
+}
+
+.c11 {
+  top: 67%;
+  left: 5%;
+  animation-delay: 1.3s;
+}
+
+.c13 {
+  top: 77%;
+  left: 1%;
+  animation-delay: 0.9s;
+}
+
+.c15 {
+  top: 87%;
+  left: 5%;
+  animation-delay: 1.6s;
+}
+
+/* RIGHT SIDE */
+
+.c2 {
+  top: 6%;
+  right: 4%;
+  animation-delay: 0.4s;
+}
+
+.c4 {
+  top: 18%;
+  right: 4%;
+  animation-delay: 1.2s;
+}
+
+.c6 {
+  top: 30%;
+  right: 5%;
+  animation-delay: 0.7s;
+}
+
+.c8 {
+  top: 43%;
+  right: 4%;
+  animation-delay: 1.5s;
+}
+
+.c10 {
+  top: 55%;
+  right: 2%;
+  animation-delay: 0.6s;
+}
+
+.c12 {
+  top: 66%;
+  right: 3%;
+  animation-delay: 1.4s;
+}
+
+.c14 {
+  top: 77%;
+  right: 1%;
+  animation-delay: 1s;
+}
+
+.c16 {
+  top: 87%;
+  right: 5%;
+  animation-delay: 1.7s;
+}
+
+/* =========================
+   DRAG HINT
+   ========================= */
+
+.hint {
+  position: absolute;
+  z-index: 4;
+  bottom: 1%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: #9bb1cf;
+  white-space: nowrap;
+}
+
+/* =========================
+   INTRO
+   ========================= */
+
+.intro {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  padding: 0 20px 36px;
+}
+
+.small {
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  font-size: 17px;
+}
+
+.intro h1 {
+  margin: 4px 0 8px;
+  font-size: clamp(42px, 12vw, 68px);
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+  background: linear-gradient(
+    #fff0bd,
+    #f3b846 48%,
+    #9b5a12
+  );
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: 0 5px 30px rgba(255, 174, 45, 0.18);
+}
+
+.line {
+  width: 74%;
+  height: 1px;
+  margin: 16px auto;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #ffc24e,
+    transparent
+  );
+}
+
+.phone {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+  margin: auto;
+  width: min(100%, 350px);
+  padding: 14px;
+  border: 1px solid #b57c23;
+  border-radius: 999px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 20px;
+  background: rgba(0, 0, 0, 0.28);
+}
+
+/* =========================
+   ANIMATION
+   ========================= */
+
+@keyframes float {
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 390px) {
+  .chip {
+    padding: 6px 7px;
+    font-size: 9px;
+  }
+
+  .hero {
+    min-height: 510px;
+  }
+
+  .small {
+    font-size: 14px;
+  }
+
+  .c5,
+  .c13 {
+    left: 1px;
+  }
+
+  .c10,
+  .c14 {
+    right: 1px;
+  }
+}
