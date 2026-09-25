@@ -351,8 +351,12 @@ function fitModel() {
 let dragging = false;
 
 let previousX = 0;
+let previousY = 0;
 
 let velocity = 0;
+let verticalVelocity = 0;
+const activePointers = new Map();
+let pinchDistance = 0;
 
 
 /*
@@ -363,10 +367,15 @@ renderer.domElement.addEventListener(
   "pointerdown",
   (event) => {
 
+    activePointers.set(event.pointerId, event);
+
     dragging = true;
 
     previousX =
       event.clientX;
+
+    previousY =
+      event.clientY;
 
     renderer.domElement
       .setPointerCapture(
@@ -385,6 +394,27 @@ renderer.domElement.addEventListener(
   "pointermove",
   (event) => {
 
+    activePointers.set(event.pointerId, event);
+
+    if (activePointers.size >= 2) {
+      const points = [...activePointers.values()];
+      const dx = points[0].clientX - points[1].clientX;
+      const dy = points[0].clientY - points[1].clientY;
+      const nextDistance = Math.hypot(dx, dy);
+
+      if (pinchDistance) {
+        zoom = THREE.MathUtils.clamp(
+          zoom - (nextDistance - pinchDistance) * 0.004,
+          0.75,
+          1.6
+        );
+        modelRoot.scale.setScalar(1 / zoom);
+      }
+
+      pinchDistance = nextDistance;
+      return;
+    }
+
     if (!dragging)
       return;
 
@@ -397,6 +427,9 @@ renderer.domElement.addEventListener(
     previousX =
       event.clientX;
 
+    const verticalDelta = event.clientY - previousY;
+    previousY = event.clientY;
+
 
     velocity =
       delta * 0.008;
@@ -404,6 +437,13 @@ renderer.domElement.addEventListener(
 
     modelRoot.rotation.y +=
       velocity;
+
+    verticalVelocity = verticalDelta * 0.006;
+    modelRoot.rotation.x = THREE.MathUtils.clamp(
+      modelRoot.rotation.x + verticalVelocity,
+      -0.8,
+      0.8
+    );
 
   }
 );
@@ -416,6 +456,8 @@ renderer.domElement.addEventListener(
 function stopDragging() {
 
   dragging = false;
+  activePointers.clear();
+  pinchDistance = 0;
 
 }
 
